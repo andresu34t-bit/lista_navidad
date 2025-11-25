@@ -72,45 +72,54 @@
         }
         
         .register-header {
-            background: linear-gradient(135deg, #d4af37 0%, #f4c430 100%);
-            padding: 40px 30px;
+            background: linear-gradient(135deg, #ff69b4 0%, #ff1493 50%, #d4af37 100%);
+            padding: 20px 25px;
             text-align: center;
             position: relative;
             overflow: hidden;
         }
         
         .register-header::before {
-            content: '⭐';
+            content: '';
             position: absolute;
-            font-size: 80px;
-            top: -20px;
-            right: -10px;
-            opacity: 0.2;
-            animation: spin 20s linear infinite;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 70% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+            animation: headerGlow 4s ease-in-out infinite;
         }
         
-        @keyframes spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+        @keyframes headerGlow {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
         }
         
         .register-header h1 {
             color: white;
-            font-size: 2.2em;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            font-size: 1.6em;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
         }
         
         .register-header p {
             color: rgba(255, 255, 255, 0.95);
-            font-size: 1.05em;
+            font-size: 0.85em;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+            position: relative;
+            z-index: 1;
         }
         
         .register-icon {
-            font-size: 70px;
-            margin-bottom: 15px;
+            font-size: 50px;
+            margin-bottom: 10px;
             display: block;
             animation: bounce 2s ease-in-out infinite;
+            position: relative;
+            z-index: 1;
         }
         
         @keyframes bounce {
@@ -119,7 +128,7 @@
         }
         
         .register-body {
-            padding: 40px 30px;
+            padding: 25px 25px;
         }
         
         .form-group {
@@ -285,12 +294,12 @@
         
         .register-footer {
             text-align: center;
-            padding: 30px;
+            padding: 18px 20px;
             background: linear-gradient(135deg, #fafafa 0%, #fff5f0 100%);
             border-top: 2px solid #ffe4f0;
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 12px;
             align-items: center;
         }
         
@@ -415,32 +424,32 @@
         
         @media (max-width: 768px) {
             body {
-                padding: 15px 10px;
+                padding: 12px 8px;
             }
             
             .register-container {
-                border-radius: 20px;
+                border-radius: 18px;
                 max-width: 100%;
             }
             
             .register-header {
-                padding: 35px 25px;
+                padding: 18px 20px;
             }
             
             .register-header h1 {
-                font-size: 1.9em;
+                font-size: 1.5em;
             }
             
             .register-header p {
-                font-size: 1em;
+                font-size: 0.8em;
             }
             
             .register-icon {
-                font-size: 65px;
+                font-size: 45px;
             }
             
             .register-body {
-                padding: 35px 25px;
+                padding: 22px 20px;
             }
             
             input[type="text"],
@@ -471,31 +480,32 @@
         
         @media (max-width: 480px) {
             body {
-                padding: 10px 5px;
+                padding: 8px 5px;
             }
             
             .register-container {
-                border-radius: 18px;
+                border-radius: 15px;
             }
             
             .register-header {
-                padding: 30px 20px;
+                padding: 15px 15px;
             }
             
             .register-header h1 {
-                font-size: 1.6em;
+                font-size: 1.3em;
             }
             
             .register-header p {
-                font-size: 0.95em;
+                font-size: 0.75em;
             }
             
             .register-icon {
-                font-size: 55px;
+                font-size: 40px;
+                margin-bottom: 8px;
             }
             
             .register-body {
-                padding: 30px 20px;
+                padding: 20px 15px;
             }
             
             .form-group {
@@ -555,28 +565,42 @@
         }
         
         @media (max-width: 360px) {
+            .register-header {
+                padding: 12px 12px;
+            }
+            
             .register-header h1 {
-                font-size: 1.4em;
+                font-size: 1.2em;
+            }
+            
+            .register-header p {
+                font-size: 0.7em;
             }
             
             .register-icon {
-                font-size: 50px;
+                font-size: 35px;
+                margin-bottom: 6px;
             }
             
             .register-body {
-                padding: 25px 15px;
+                padding: 18px 12px;
             }
             
             input[type="text"],
             input[type="email"],
             input[type="password"] {
-                padding: 11px;
+                padding: 10px;
+                font-size: 15px;
             }
             
             .btn-register,
             .btn-login-redirect {
-                padding: 12px 20px;
-                font-size: 0.9em;
+                padding: 12px 18px;
+                font-size: 0.85em;
+            }
+            
+            .register-footer {
+                padding: 15px;
             }
         }
     </style>

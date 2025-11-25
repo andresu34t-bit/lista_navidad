@@ -60,38 +60,54 @@
         }
         
         .login-header {
-            background: linear-gradient(135deg, #d4af37 0%, #f4c430 100%);
-            padding: 40px 30px;
+            background: linear-gradient(135deg, #d4af37 0%, #f4c430 50%, #ff69b4 100%);
+            padding: 20px 25px;
             text-align: center;
             position: relative;
+            overflow: hidden;
         }
         
         .login-header::before {
-            content: '🎅';
+            content: '';
             position: absolute;
-            font-size: 60px;
-            top: -20px;
-            right: 20px;
-            opacity: 0.3;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+            animation: headerGlow 4s ease-in-out infinite;
+        }
+        
+        @keyframes headerGlow {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
         }
         
         .login-header h1 {
             color: white;
-            font-size: 2.2em;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            font-size: 1.6em;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
         }
         
         .login-header p {
             color: rgba(255, 255, 255, 0.95);
-            font-size: 1.1em;
+            font-size: 0.85em;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+            position: relative;
+            z-index: 1;
         }
         
         .login-icon {
-            font-size: 80px;
-            margin-bottom: 15px;
+            font-size: 50px;
+            margin-bottom: 10px;
             display: block;
             animation: bounce 2s ease-in-out infinite;
+            position: relative;
+            z-index: 1;
         }
         
         @keyframes bounce {
@@ -100,7 +116,7 @@
         }
         
         .login-body {
-            padding: 40px 30px;
+            padding: 25px 25px;
         }
         
         .form-group {
@@ -265,8 +281,8 @@
         
         .login-footer {
             text-align: center;
-            padding: 20px;
-            background: #fafafa;
+            padding: 18px 20px;
+            background: linear-gradient(135deg, #fafafa 0%, #fff5f0 100%);
             color: #999;
             font-size: 0.9em;
         }
@@ -388,32 +404,32 @@
         
         @media (max-width: 768px) {
             body {
-                padding: 15px 10px;
+                padding: 12px 8px;
             }
             
             .login-container {
-                border-radius: 20px;
+                border-radius: 18px;
                 max-width: 100%;
             }
             
             .login-header {
-                padding: 35px 25px;
+                padding: 18px 20px;
             }
             
             .login-header h1 {
-                font-size: 2.1em;
+                font-size: 1.5em;
             }
             
             .login-header p {
-                font-size: 1.05em;
+                font-size: 0.8em;
             }
             
             .login-icon {
-                font-size: 75px;
+                font-size: 45px;
             }
             
             .login-body {
-                padding: 35px 25px;
+                padding: 22px 20px;
             }
             
             input[type="text"],
@@ -443,31 +459,32 @@
         
         @media (max-width: 480px) {
             body {
-                padding: 10px 5px;
+                padding: 8px 5px;
             }
             
             .login-container {
-                border-radius: 18px;
+                border-radius: 15px;
             }
             
             .login-header {
-                padding: 30px 20px;
+                padding: 15px 15px;
             }
             
             .login-header h1 {
-                font-size: 1.7em;
+                font-size: 1.3em;
             }
             
             .login-header p {
-                font-size: 1em;
+                font-size: 0.75em;
             }
             
             .login-icon {
-                font-size: 65px;
+                font-size: 40px;
+                margin-bottom: 8px;
             }
             
             .login-body {
-                padding: 30px 20px;
+                padding: 20px 15px;
             }
             
             .form-group {
@@ -522,27 +539,41 @@
         }
         
         @media (max-width: 360px) {
+            .login-header {
+                padding: 12px 12px;
+            }
+            
             .login-header h1 {
-                font-size: 1.5em;
+                font-size: 1.2em;
+            }
+            
+            .login-header p {
+                font-size: 0.7em;
             }
             
             .login-icon {
-                font-size: 55px;
+                font-size: 35px;
+                margin-bottom: 6px;
             }
             
             .login-body {
-                padding: 25px 15px;
+                padding: 18px 12px;
             }
             
             input[type="text"],
             input[type="password"] {
-                padding: 11px;
+                padding: 10px;
+                font-size: 15px;
             }
             
             .btn-login,
             .btn-register-redirect {
-                padding: 12px 20px;
-                font-size: 0.9em;
+                padding: 12px 18px;
+                font-size: 0.85em;
+            }
+            
+            .login-footer {
+                padding: 15px;
             }
         }
     </style>
