@@ -216,20 +216,67 @@
         
         .register-footer {
             text-align: center;
-            padding: 25px;
-            background: #fafafa;
-            border-top: 1px solid #ffe4f0;
+            padding: 30px;
+            background: linear-gradient(135deg, #fafafa 0%, #fff5f0 100%);
+            border-top: 2px solid #ffe4f0;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
         }
         
-        .register-footer a {
-            color: #ff69b4;
+        .footer-text {
+            color: #666;
+            font-size: 1em;
+            margin: 0;
+        }
+        
+        .btn-login-redirect {
+            display: inline-block;
+            padding: 14px 40px;
+            background: linear-gradient(135deg, #d4af37 0%, #f4c430 100%);
+            color: white;
             text-decoration: none;
-            font-weight: 600;
-            transition: color 0.3s ease;
+            font-weight: 700;
+            border-radius: 30px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 
+                0 8px 20px rgba(212, 175, 55, 0.3),
+                0 2px 8px rgba(244, 196, 48, 0.2);
+            font-size: 1.05em;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
         }
         
-        .register-footer a:hover {
-            color: #d4af37;
+        .btn-login-redirect::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+            z-index: -1;
+        }
+        
+        .btn-login-redirect:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+        
+        .btn-login-redirect:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 
+                0 12px 30px rgba(212, 175, 55, 0.5),
+                0 4px 12px rgba(244, 196, 48, 0.3);
+        }
+        
+        .btn-login-redirect:active {
+            transform: translateY(-1px) scale(1);
         }
         
         .input-icon {
@@ -268,13 +315,75 @@
         }
         
         /* Responsive Design */
+        @media (max-width: 968px) {
+            .register-container {
+                max-width: 90%;
+            }
+        }
+        
         @media (max-width: 768px) {
             body {
-                padding: 10px;
+                padding: 15px 10px;
             }
             
             .register-container {
                 border-radius: 20px;
+                max-width: 100%;
+            }
+            
+            .register-header {
+                padding: 35px 25px;
+            }
+            
+            .register-header h1 {
+                font-size: 1.9em;
+            }
+            
+            .register-header p {
+                font-size: 1em;
+            }
+            
+            .register-icon {
+                font-size: 65px;
+            }
+            
+            .register-body {
+                padding: 35px 25px;
+            }
+            
+            input[type="text"],
+            input[type="email"],
+            input[type="password"] {
+                padding: 13px;
+                font-size: 16px; /* Evita zoom en iOS */
+            }
+            
+            .input-icon input {
+                padding-left: 42px;
+            }
+            
+            .btn-register {
+                padding: 15px;
+                font-size: 1.05em;
+            }
+            
+            .btn-login-redirect {
+                padding: 13px 35px;
+                font-size: 1em;
+            }
+            
+            .register-footer {
+                padding: 25px 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            body {
+                padding: 10px 5px;
+            }
+            
+            .register-container {
+                border-radius: 18px;
             }
             
             .register-header {
@@ -282,46 +391,100 @@
             }
             
             .register-header h1 {
-                font-size: 1.8em;
-            }
-            
-            .register-icon {
-                font-size: 60px;
-            }
-            
-            .register-body {
-                padding: 30px 20px;
-            }
-            
-            input[type="text"],
-            input[type="email"],
-            input[type="password"] {
-                padding: 12px;
-                font-size: 16px; /* Evita zoom en iOS */
-            }
-            
-            .input-icon input {
-                padding-left: 40px;
-            }
-            
-            .btn-register {
-                padding: 14px;
-                font-size: 1em;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .register-header h1 {
-                font-size: 1.5em;
+                font-size: 1.6em;
             }
             
             .register-header p {
                 font-size: 0.95em;
             }
             
+            .register-icon {
+                font-size: 55px;
+            }
+            
+            .register-body {
+                padding: 30px 20px;
+            }
+            
+            .form-group {
+                margin-bottom: 20px;
+            }
+            
+            label {
+                font-size: 0.95em;
+                margin-bottom: 6px;
+            }
+            
+            input[type="text"],
+            input[type="email"],
+            input[type="password"] {
+                padding: 12px;
+                font-size: 16px;
+            }
+            
+            .input-icon input {
+                padding-left: 40px;
+            }
+            
+            .input-icon::before {
+                font-size: 1.1em;
+                left: 12px;
+            }
+            
+            .btn-register {
+                padding: 14px;
+                font-size: 1em;
+            }
+            
+            .btn-login-redirect {
+                padding: 12px 30px;
+                font-size: 0.95em;
+                width: 100%;
+                max-width: 280px;
+            }
+            
+            .register-footer {
+                padding: 25px 15px;
+                gap: 12px;
+            }
+            
+            .footer-text {
+                font-size: 0.95em;
+            }
+            
+            .password-hint {
+                font-size: 0.8em;
+            }
+            
             body::before,
             body::after {
-                font-size: 80px;
+                font-size: 70px;
+            }
+        }
+        
+        @media (max-width: 360px) {
+            .register-header h1 {
+                font-size: 1.4em;
+            }
+            
+            .register-icon {
+                font-size: 50px;
+            }
+            
+            .register-body {
+                padding: 25px 15px;
+            }
+            
+            input[type="text"],
+            input[type="email"],
+            input[type="password"] {
+                padding: 11px;
+            }
+            
+            .btn-register,
+            .btn-login-redirect {
+                padding: 12px 20px;
+                font-size: 0.9em;
             }
         }
     </style>
@@ -389,7 +552,10 @@
         </div>
         
         <div class="register-footer">
-            <p>¿Ya tienes cuenta? <a href="{% url 'login' %}">Inicia Sesión</a></p>
+            <p class="footer-text">¿Ya tienes cuenta?</p>
+            <a href="{% url 'login' %}" class="btn-login-redirect">
+                🎅 Iniciar Sesión
+            </a>
         </div>
     </div>
 </body>
