@@ -1,0 +1,281 @@
+{% extends 'regalos/base.html' %}
+
+{% block title %}{{ persona.nombre }} - Lista Navideña{% endblock %}
+
+{% block extra_css %}
+<style>
+    .persona-info {
+        background: linear-gradient(135deg, #ff69b4 0%, #ff1493 100%);
+        color: white;
+        padding: 30px;
+        border-radius: 15px;
+        margin-bottom: 30px;
+        box-shadow: 0 8px 20px rgba(255, 105, 180, 0.3);
+    }
+    
+    .persona-nombre {
+        font-size: 2em;
+        margin-bottom: 20px;
+    }
+    
+    .stats-row {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 15px;
+    }
+    
+    .stat-box {
+        background: rgba(255, 255, 255, 0.2);
+        padding: 15px;
+        border-radius: 10px;
+        text-align: center;
+    }
+    
+    .stat-box-value {
+        font-size: 1.8em;
+        font-weight: bold;
+    }
+    
+    .stat-box-label {
+        font-size: 0.9em;
+        opacity: 0.9;
+        margin-top: 5px;
+    }
+    
+    .regalos-list {
+        display: grid;
+        gap: 15px;
+    }
+    
+    .regalo-item {
+        background: white;
+        border-radius: 12px;
+        padding: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 15px;
+        border-left: 5px solid #d4af37;
+        transition: all 0.3s ease;
+        flex-wrap: wrap;
+    }
+    
+    .regalo-item:hover {
+        transform: translateX(5px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    .regalo-item.comprado {
+        opacity: 0.6;
+        border-left-color: #51cf66;
+        background: #f0f9f0;
+    }
+    
+    .regalo-info {
+        flex: 1;
+    }
+    
+    .regalo-nombre {
+        font-size: 1.3em;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 5px;
+    }
+    
+    .regalo-item.comprado .regalo-nombre {
+        text-decoration: line-through;
+    }
+    
+    .regalo-descripcion {
+        color: #666;
+        margin-bottom: 8px;
+    }
+    
+    .regalo-precio {
+        font-size: 1.5em;
+        font-weight: bold;
+        color: #ff69b4;
+        margin-right: 20px;
+    }
+    
+    .regalo-actions {
+        display: flex;
+        gap: 10px;
+    }
+    
+    .section-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+    
+    .section-title {
+        font-size: 1.8em;
+        color: #d4af37;
+    }
+    
+    .empty-regalos {
+        text-align: center;
+        padding: 40px;
+        color: #999;
+    }
+    
+    .warning-box {
+        background: #fff3cd;
+        border-left: 4px solid #ffc107;
+        padding: 15px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        color: #856404;
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .stats-row {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        
+        .regalo-item {
+            padding: 15px;
+        }
+        
+        .regalo-nombre {
+            font-size: 1.1em;
+        }
+        
+        .regalo-precio {
+            font-size: 1.3em;
+            margin-right: 10px;
+        }
+        
+        .regalo-actions {
+            width: 100%;
+            justify-content: stretch;
+        }
+        
+        .regalo-actions .btn {
+            flex: 1;
+            font-size: 0.85em;
+            padding: 8px 10px;
+        }
+        
+        .section-header {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 15px;
+        }
+        
+        .section-header .btn {
+            width: 100%;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        .persona-nombre {
+            font-size: 1.6em;
+        }
+        
+        .stats-row {
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+        
+        .stat-box-value {
+            font-size: 1.5em;
+        }
+        
+        .section-title {
+            font-size: 1.4em;
+        }
+        
+        .regalo-item {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        
+        .regalo-precio {
+            margin-right: 0;
+            align-self: flex-start;
+        }
+        
+        .regalo-actions {
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .regalo-actions .btn {
+            width: 100%;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<a href="{% url 'lista_personas' %}" class="back-link">← Volver a la lista</a>
+
+<div class="persona-info">
+    <div class="persona-nombre">{{ persona.nombre }}</div>
+    <div class="stats-row">
+        <div class="stat-box">
+            <div class="stat-box-value">{{ persona.total_regalos }}/6</div>
+            <div class="stat-box-label">Regalos</div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-box-value">S/ {{ persona.total_gastado|floatformat:2 }}</div>
+            <div class="stat-box-label">Total Gastado</div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-box-value">{{ regalos|length }}</div>
+            <div class="stat-box-label">En Lista</div>
+        </div>
+    </div>
+</div>
+
+{% if persona.total_regalos >= 6 %}
+<div class="warning-box">
+    ⚠️ Esta persona ya tiene el máximo de 6 regalos permitidos.
+</div>
+{% endif %}
+
+<div class="card">
+    <div class="section-header">
+        <h2 class="section-title">🎁 Regalos</h2>
+        {% if persona.puede_agregar_regalo %}
+        <a href="{% url 'agregar_regalo' persona.id %}" class="btn btn-primary">➕ Agregar Regalo</a>
+        {% endif %}
+    </div>
+    
+    {% if regalos %}
+    <div class="regalos-list">
+        {% for regalo in regalos %}
+        <div class="regalo-item {% if regalo.comprado %}comprado{% endif %}">
+            <div class="regalo-info">
+                <div class="regalo-nombre">{{ regalo.nombre }}</div>
+                {% if regalo.descripcion %}
+                <div class="regalo-descripcion">{{ regalo.descripcion }}</div>
+                {% endif %}
+            </div>
+            <div class="regalo-precio">S/ {{ regalo.precio }}</div>
+            <div class="regalo-actions">
+                <a href="{% url 'marcar_comprado' regalo.id %}" 
+                   class="btn {% if regalo.comprado %}btn-secondary{% else %}btn-success{% endif %}">
+                    {% if regalo.comprado %}↩️ Desmarcar{% else %}✓ Comprado{% endif %}
+                </a>
+                <a href="{% url 'eliminar_regalo' regalo.id %}" 
+                   class="btn btn-danger"
+                   onclick="return confirm('¿Estás seguro de eliminar este regalo?')">
+                    🗑️ Eliminar
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="empty-regalos">
+        <div style="font-size: 3em; margin-bottom: 15px;">🎁</div>
+        <p>No hay regalos en la lista aún</p>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

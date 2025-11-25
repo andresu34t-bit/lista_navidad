@@ -1,0 +1,138 @@
+{% extends 'regalos/base.html' %}
+
+{% block title %}Lista de Personas - Lista Navideña{% endblock %}
+
+{% block extra_css %}
+<style>
+    .personas-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+    }
+    
+    @media (max-width: 768px) {
+        .personas-grid {
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        .persona-nombre {
+            font-size: 1.3em;
+        }
+        
+        .stat-value {
+            font-size: 1.3em;
+        }
+    }
+    
+    .persona-card {
+        background: linear-gradient(135deg, #fff 0%, #fffaf0 100%);
+        border-left: 5px solid #ff69b4;
+    }
+    
+    .persona-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+    }
+    
+    .persona-nombre {
+        font-size: 1.5em;
+        color: #d4af37;
+        font-weight: bold;
+    }
+    
+    .persona-stats {
+        display: flex;
+        gap: 15px;
+        margin: 15px 0;
+    }
+    
+    .stat {
+        flex: 1;
+        text-align: center;
+        padding: 10px;
+        background: #ffeef8;
+        border-radius: 8px;
+    }
+    
+    .stat-value {
+        font-size: 1.5em;
+        font-weight: bold;
+        color: #ff69b4;
+    }
+    
+    .stat-label {
+        font-size: 0.85em;
+        color: #666;
+        margin-top: 5px;
+    }
+    
+    .actions {
+        display: flex;
+        gap: 10px;
+        margin-top: 15px;
+    }
+    
+    .empty-state {
+        text-align: center;
+        padding: 60px 20px;
+        color: #999;
+    }
+    
+    .empty-state-icon {
+        font-size: 4em;
+        margin-bottom: 20px;
+    }
+    
+    .header-actions {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="header-actions">
+    <a href="{% url 'agregar_persona' %}" class="btn btn-primary">➕ Agregar Nueva Persona</a>
+</div>
+
+{% if personas %}
+<div class="personas-grid">
+    {% for persona in personas %}
+    <div class="card persona-card">
+        <div class="persona-header">
+            <div class="persona-nombre">{{ persona.nombre }}</div>
+        </div>
+        
+        <div class="persona-stats">
+            <div class="stat">
+                <div class="stat-value">{{ persona.total_regalos }}</div>
+                <div class="stat-label">Regalos</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">S/ {{ persona.total_gastado|floatformat:2 }}</div>
+                <div class="stat-label">Total</div>
+            </div>
+        </div>
+        
+        <div class="actions">
+            <a href="{% url 'detalle_persona' persona.id %}" class="btn btn-secondary" style="flex: 1;">Ver Detalles</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div class="card">
+    <div class="empty-state">
+        <div class="empty-state-icon">🎅</div>
+        <h2>No hay personas en tu lista</h2>
+        <p>Comienza agregando personas para organizar sus regalos navideños</p>
+    </div>
+</div>
+{% endif %}
+{% endblock %}
