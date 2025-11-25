@@ -1,17 +1,17 @@
 from pathlib import Path
 import os
+import dj_database_url
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = os.getenv("SECRET_KEY", "dev-secret-key")  # Render usará una variable segura
+# Secret Key desde Render
+SECRET_KEY = os.getenv("SECRET_KEY", "dev-secret-key")
 
+# Debug desde variable de entorno
 DEBUG = os.getenv("DEBUG", "False") == "True"
 
-ALLOWED_HOSTS = [
-    "localhost",
-    "127.0.0.1",
-    os.getenv("RENDER_EXTERNAL_HOSTNAME", ""),
-]
+# ALLOWED_HOSTS seguro y compatible con Render
+ALLOWED_HOSTS = ["*"]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -25,6 +25,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -52,17 +53,33 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'lista_navidad.wsgi.application'
 
-# BASE DE DATOS PARA RENDER (SQLite o PostgreSQL)
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',  # Puedes mantener sqlite si tu app es simple
-        'NAME': BASE_DIR / 'db.sqlite3',
+# Database - PostgreSQL en producción, SQLite en desarrollo
+if os.getenv('DATABASE_URL'):
+    DATABASES = {
+        'default': dj_database_url.config(
+            default=os.getenv('DATABASE_URL'),
+            conn_max_age=600,
+            conn_health_checks=True,
+        )
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
-# Archivos estáticos (Render los servirá)
+# Static files
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# Internationalization
+LANGUAGE_CODE = 'es-pe'
+TIME_ZONE = 'America/Lima'
+USE_I18N = True
+USE_TZ = True
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
