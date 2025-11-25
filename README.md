@@ -133,3 +133,4 @@ regalos/                # Aplicación principal
 # lista_navidad
 # lista_navidad
 # lista_navidad
+# lista_navidad
