@@ -44,9 +44,9 @@
         header {
             background: linear-gradient(135deg, #d4af37 0%, #f4c430 50%, #ff69b4 100%);
             padding: 0;
-            border-radius: 18px;
-            box-shadow: 0 8px 30px rgba(212, 175, 55, 0.4);
-            margin-bottom: 25px;
+            border-radius: 15px;
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.3);
+            margin-bottom: 20px;
             overflow: hidden;
             position: relative;
         }
@@ -95,21 +95,21 @@
         .header-content {
             position: relative;
             z-index: 1;
-            padding: 18px 25px;
+            padding: 12px 20px;
         }
         
         h1 {
             color: #fff;
-            font-size: 1.8em;
+            font-size: 1.4em;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            margin-bottom: 5px;
+            margin-bottom: 3px;
             font-weight: 700;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.3px;
         }
         
         .subtitle {
-            color: rgba(255, 255, 255, 0.95);
-            font-size: 0.9em;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.75em;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
             font-weight: 500;
         }
@@ -371,7 +371,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: 30px;
+            gap: 20px;
         }
         
         .header-title {
@@ -382,30 +382,30 @@
             display: flex;
             flex-direction: column;
             align-items: flex-end;
-            gap: 12px;
+            gap: 8px;
         }
         
         .user-info {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
             background: rgba(255, 255, 255, 0.15);
-            padding: 8px 15px;
-            border-radius: 20px;
+            padding: 6px 12px;
+            border-radius: 18px;
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
         
         .user-info strong {
             color: white;
-            font-size: 0.9em;
+            font-size: 0.8em;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
         }
         
         .user-avatar {
-            width: 32px;
-            height: 32px;
+            width: 28px;
+            height: 28px;
             border-radius: 50%;
             background: linear-gradient(135deg, #ff69b4, #ff1493);
             display: flex;
@@ -413,32 +413,32 @@
             justify-content: center;
             color: white;
             font-weight: bold;
-            font-size: 1em;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+            font-size: 0.9em;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         }
         
         .admin-badge {
             background: linear-gradient(135deg, #ffd700, #ffed4e);
             color: #8b6914;
-            padding: 4px 10px;
-            border-radius: 15px;
-            font-size: 0.75em;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.7em;
             font-weight: 700;
             white-space: nowrap;
-            box-shadow: 0 2px 6px rgba(255, 215, 0, 0.3);
+            box-shadow: 0 2px 5px rgba(255, 215, 0, 0.3);
             border: 1px solid rgba(255, 255, 255, 0.3);
         }
         
         .user-actions {
             display: flex;
-            gap: 8px;
+            gap: 6px;
             flex-wrap: wrap;
         }
         
         .btn-sm {
-            font-size: 0.8em;
-            padding: 8px 15px;
-            border-radius: 18px;
+            font-size: 0.75em;
+            padding: 6px 12px;
+            border-radius: 15px;
             font-weight: 600;
             transition: all 0.3s ease;
             border: 2px solid rgba(255, 255, 255, 0.3);
@@ -455,30 +455,45 @@
             .header-content {
                 flex-direction: column;
                 align-items: stretch;
-                gap: 20px;
+                gap: 12px;
+                padding: 10px 15px;
             }
             
             .header-title {
                 text-align: center;
             }
             
+            h1 {
+                font-size: 1.3em;
+                margin-bottom: 2px;
+            }
+            
+            .subtitle {
+                font-size: 0.7em;
+            }
+            
             .header-user {
                 align-items: stretch;
                 width: 100%;
+                gap: 6px;
             }
             
             .user-info {
                 justify-content: center;
+                padding: 5px 10px;
             }
             
             .user-actions {
                 justify-content: center;
                 width: 100%;
+                gap: 5px;
             }
             
             .user-actions .btn-sm {
                 flex: 1;
                 text-align: center;
+                padding: 5px 10px;
+                font-size: 0.7em;
             }
         }
         
@@ -544,20 +559,21 @@
         
         @media (max-width: 480px) {
             h1 {
-                font-size: 1.4em;
-                letter-spacing: 0.3px;
+                font-size: 1.2em;
+                letter-spacing: 0.2px;
             }
             
             .subtitle {
-                font-size: 0.8em;
+                font-size: 0.65em;
             }
             
             .header-content {
-                padding: 15px 12px;
+                padding: 8px 10px;
             }
             
             header {
-                margin-bottom: 15px;
+                margin-bottom: 12px;
+                border-radius: 12px;
             }
             
             .card {
@@ -570,19 +586,19 @@
             }
             
             .btn-sm {
-                padding: 8px 12px;
-                font-size: 0.8em;
+                padding: 5px 8px;
+                font-size: 0.65em;
             }
             
             .user-info {
-                font-size: 0.85em;
-                padding: 8px 12px;
-                gap: 8px;
+                font-size: 0.75em;
+                padding: 4px 8px;
+                gap: 6px;
             }
             
             .user-avatar {
-                width: 28px;
-                height: 28px;
+                width: 24px;
+                height: 24px;
                 font-size: 0.9em;
             }
             
